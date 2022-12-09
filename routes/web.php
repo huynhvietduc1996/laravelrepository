@@ -14,10 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('admin')->group(function (){
-    Route::get('/', function (){
+Route::get('/', function () {
+    return view('frontend.index');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
         return view('layouts.admin.index');
-    })->name('admin.index');
+    }
+    )->name('admin.index');
 
     Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
     Route::get('create', [CategoryController::class, 'create'])->name('categories.create');
@@ -25,4 +30,3 @@ Route::prefix('admin')->group(function (){
     Route::get('edit/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
     Route::put('edit/{id}', [CategoryController::class, 'update'])->name('categories.update');
 });
-
